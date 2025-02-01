@@ -1,13 +1,29 @@
 package br.com.jjco.AppProdutos.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tb_produtos")
 public class Produtos {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincrement
+    private Long id;
+
+    @Column(nullable = false, unique = true) //not null
     private String codigoBarras;
+
+    @Column(nullable = false) //not null
     private String nome;
+
+    @Column(nullable = false) //not null
     private Double preco;
 
     public Produtos(){}
 
-    Produtos(String codigoBarras, String nome, Double preco){
+    Produtos(Long id, String codigoBarras, String nome, Double preco){
+
+        this.id = id;
         this.codigoBarras = codigoBarras;
         this.nome = nome;
         this.preco = preco;

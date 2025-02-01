@@ -1,6 +1,8 @@
 package br.com.jjco.AppProdutos.resource;
 
 import br.com.jjco.AppProdutos.model.Produtos;
+import br.com.jjco.AppProdutos.repository.ProdutosRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +13,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api") //http://localhost:8080/api
 public class AppProdutosResource {
+
+    @Autowired //injeção de dependência
+    private ProdutosRepository produtosRepository;
+
+    @GetMapping("lista")
+    public List<Produtos> listar(){
+        List<Produtos> listProdutos = produtosRepository.findAll();
+        return listProdutos;
+    }
 
     @GetMapping
     public String getAppi(){
