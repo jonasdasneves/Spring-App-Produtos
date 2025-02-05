@@ -3,9 +3,9 @@ package br.com.jjco.AppProdutos.resource;
 import br.com.jjco.AppProdutos.model.Produtos;
 import br.com.jjco.AppProdutos.repository.ProdutosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,12 @@ public class AppProdutosResource {
     @GetMapping
     public String getAppi(){
         return  "API Java funcionando 😎";
+    }
+
+    @PostMapping
+    public ResponseEntity<Produtos> registraProduto(@RequestBody Produtos produto){
+
+        return new ResponseEntity<Produtos>(produtosRepository.save(produto), HttpStatus.CREATED);
     }
 
     @GetMapping("getProduto")
