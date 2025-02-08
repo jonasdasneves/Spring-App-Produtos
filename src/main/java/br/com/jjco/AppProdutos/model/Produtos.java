@@ -63,4 +63,8 @@ public class Produtos {
 
         return retorno;
     }
+
+    public Long getId() {
+        return id;
+    }
 }
